@@ -2,9 +2,13 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Chi siamo — Giorgia, fondatrice di Novéa</title>
 <meta name="description" content="Novéa nasce dall'esperienza di Giorgia, estetista qualificata da oltre dieci anni, specializzata nella salute della pelle del viso.">
+<link rel="canonical" href="https://danielsportelli.github.io/novea/chi-siamo.html">
+<meta name="theme-color" content="#2B2B2B">
+<link rel="icon" type="image/png" href="immagini/favicon.png">
+<link rel="apple-touch-icon" href="immagini/favicon.png">
 <meta property="og:title" content="Chi siamo — Novéa">
 <meta property="og:description" content="Novéa nasce dall'esperienza di Giorgia, estetista qualificata da oltre dieci anni, specializzata nella salute della pelle del viso.">
 <meta property="og:image" content="https://danielsportelli.github.io/novea/og.png">
@@ -240,6 +244,15 @@
   .mini-cta h3{ font-size:24px; margin-bottom:10px; }
   .mini-cta p{ color:#5b5b5b; margin-bottom:22px; font-size:15px; }
 
+
+  /* ---------- SAFE AREA (notch) ---------- */
+  body{ padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+  header{ padding-top: env(safe-area-inset-top); top: 0; }
+
+  /* ---------- ANTI-COPY (soft deterrent, not real protection) ---------- */
+  body{ -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; -webkit-touch-callout:none; }
+  input, textarea{ -webkit-user-select:text; -moz-user-select:text; -ms-user-select:text; user-select:text; }
+  img{ -webkit-user-drag:none; user-drag:none; pointer-events:none; }
 </style>
 </head>
 <body>
@@ -345,6 +358,13 @@
     }, { threshold: 0.15 });
     els.forEach(el => io.observe(el));
   });
+</script>
+
+<script>
+  document.addEventListener('contextmenu', function(e){
+    if (e.target.tagName === 'IMG') e.preventDefault();
+  });
+  document.querySelectorAll('img').forEach(function(img){ img.setAttribute('draggable','false'); });
 </script>
 </body>
 </html>

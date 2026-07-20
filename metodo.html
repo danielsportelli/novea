@@ -2,9 +2,13 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Il Metodo Novéa — Analisi, percorso e monitoraggio della pelle</title>
 <meta name="description" content="Scopri il Metodo Novéa: analisi digitale in studio, consulenza, routine personalizzata, percorso di 12 sedute in 6 mesi e monitoraggio continuo dei risultati.">
+<link rel="canonical" href="https://danielsportelli.github.io/novea/metodo.html">
+<meta name="theme-color" content="#2B2B2B">
+<link rel="icon" type="image/png" href="immagini/favicon.png">
+<link rel="apple-touch-icon" href="immagini/favicon.png">
 <meta property="og:title" content="Il Metodo Novéa">
 <meta property="og:description" content="Analisi digitale in studio, consulenza, routine personalizzata, percorso e monitoraggio continuo. Non un trattamento: un metodo.">
 <meta property="og:image" content="https://danielsportelli.github.io/novea/og.png">
@@ -241,6 +245,15 @@
   .mini-cta h3{ font-size:24px; margin-bottom:10px; }
   .mini-cta p{ color:#5b5b5b; margin-bottom:22px; font-size:15px; }
 
+
+  /* ---------- SAFE AREA (notch) ---------- */
+  body{ padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+  header{ padding-top: env(safe-area-inset-top); top: 0; }
+
+  /* ---------- ANTI-COPY (soft deterrent, not real protection) ---------- */
+  body{ -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; -webkit-touch-callout:none; }
+  input, textarea{ -webkit-user-select:text; -moz-user-select:text; -ms-user-select:text; user-select:text; }
+  img{ -webkit-user-drag:none; user-drag:none; pointer-events:none; }
 </style>
 </head>
 <body>
@@ -306,7 +319,7 @@
       <p>Il primo passo è sempre lo stesso: la tua Analisi Digitale della Pelle in Studio, 89 €, con uno skin analyzer professionale. Non è un'app, non è un questionario online: è uno strumento dedicato, usato dal vivo, che restituisce una lettura oggettiva della tua pelle — non un'impressione visiva.</p>
     </div>
     <div class="wrap reveal" style="margin:32px 0;">
-      <img src="assets/analisi-in-studio.png" alt="Analisi della pelle in studio con skin analyzer professionale" style="width:100%; border-radius:4px; display:block;">
+      <img src="immagini/analisi-in-studio.webp" alt="Analisi della pelle in studio con skin analyzer professionale" style="width:100%; border-radius:4px; display:block;">
       <p style="font-size:12px; color:var(--taupe); margin-top:10px; text-align:center;">Rendering illustrativo — non una foto dello studio reale</p>
     </div>
     <div class="wrap reveal prose">
@@ -314,7 +327,7 @@
       <p>Il risultato è un report personalizzato con i tuoi punteggi per ciascun parametro, le fotografie di riferimento e i consigli di routine mattina e sera — la base su cui, in consulenza, costruiamo il tuo eventuale percorso. È anche lo stesso strumento che rende possibile il monitoraggio nel tempo: ogni analisi successiva si confronta con la tua iniziale, così i tuoi progressi non sono una sensazione ma un dato.</p>
     </div>
     <div class="wrap reveal" style="margin:32px 0;">
-      <img src="assets/esempio-report.png" alt="Esempio illustrativo di report di analisi della pelle" style="width:100%; border-radius:4px; display:block; border:1px solid var(--taupe);">
+      <img src="immagini/esempio-report.webp" alt="Esempio illustrativo di report di analisi della pelle" style="width:100%; border-radius:4px; display:block; border:1px solid var(--taupe);">
       <p style="font-size:12px; color:var(--taupe); margin-top:10px; text-align:center;">Esempio illustrativo del report — dati e nominativo inventati, non un'analisi reale</p>
     </div>
     <div class="wrap reveal prose">
@@ -468,6 +481,13 @@
     }, { threshold: 0.15 });
     els.forEach(el => io.observe(el));
   });
+</script>
+
+<script>
+  document.addEventListener('contextmenu', function(e){
+    if (e.target.tagName === 'IMG') e.preventDefault();
+  });
+  document.querySelectorAll('img').forEach(function(img){ img.setAttribute('draggable','false'); });
 </script>
 </body>
 </html>

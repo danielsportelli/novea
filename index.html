@@ -2,8 +2,13 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Novéa — Skincare Studio</title>
+<meta name="description" content="Novéa — Skincare Studio specializzato nella pelle del viso. Analisi della pelle, percorso personalizzato, skincare professionale. Non un trattamento: un metodo.">
+<link rel="canonical" href="https://danielsportelli.github.io/novea/">
+<meta name="theme-color" content="#2B2B2B">
+<link rel="icon" type="image/png" href="immagini/favicon.png">
+<link rel="apple-touch-icon" href="immagini/favicon.png">
 <meta property="og:title" content="Novéa — Skincare Studio">
 <meta property="og:description" content="Analisi della pelle, percorso personalizzato, skincare professionale. Non un trattamento: un metodo.">
 <meta property="og:image" content="https://danielsportelli.github.io/novea/og.png">
@@ -216,6 +221,15 @@
     .metodo-steps{ flex-direction:column; gap:22px; }
     .metodo-step{ text-align:left; padding:0; display:flex; flex-direction:column; }
   }
+
+  /* ---------- SAFE AREA (notch) ---------- */
+  body{ padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+  header{ padding-top: env(safe-area-inset-top); top: 0; }
+
+  /* ---------- ANTI-COPY (soft deterrent, not real protection) ---------- */
+  body{ -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; -webkit-touch-callout:none; }
+  input, textarea{ -webkit-user-select:text; -moz-user-select:text; -ms-user-select:text; user-select:text; }
+  img{ -webkit-user-drag:none; user-drag:none; pointer-events:none; }
 </style>
 </head>
 <body>
@@ -361,16 +375,21 @@
       <span class="eyebrow">Prossimamente</span>
       <h2>Scopri davvero come sta la tua pelle.</h2>
       <p class="price-note">Zona: tra Treviglio, Stezzano e Dalmine (provincia di Bergamo) — sede esatta in definizione. Lascia i tuoi contatti: ti avviseremo appena lo studio apre.</p>
-      <form style="text-align:left; margin-top:32px; background:#fff; border:1px solid var(--taupe); border-radius:3px; padding:32px;" onsubmit="event.preventDefault(); alert('Form da collegare a Mailchimp/Brevo/Google Forms — vedi nota sotto.');">
+      <form id="waitlist-form" method="post" action="https://systeme.io/embedded/42778907/subscription" style="text-align:left; margin-top:32px; background:#fff; border:1px solid var(--taupe); border-radius:3px; padding:32px;">
         <label style="display:block; font-size:12px; letter-spacing:0.05em; text-transform:uppercase; color:var(--sage); margin-bottom:6px;">Nome</label>
-        <input type="text" required style="width:100%; padding:12px 14px; margin-bottom:18px; border:1px solid var(--beige); border-radius:2px; font-family:'Manrope',sans-serif; font-size:15px;">
+        <input type="text" name="first_name" required style="width:100%; padding:12px 14px; margin-bottom:18px; border:1px solid var(--beige); border-radius:2px; font-family:'Manrope',sans-serif; font-size:15px;">
         <label style="display:block; font-size:12px; letter-spacing:0.05em; text-transform:uppercase; color:var(--sage); margin-bottom:6px;">Email</label>
-        <input type="email" required style="width:100%; padding:12px 14px; margin-bottom:18px; border:1px solid var(--beige); border-radius:2px; font-family:'Manrope',sans-serif; font-size:15px;">
+        <input type="email" name="email" required style="width:100%; padding:12px 14px; margin-bottom:18px; border:1px solid var(--beige); border-radius:2px; font-family:'Manrope',sans-serif; font-size:15px;">
         <label style="display:block; font-size:12px; letter-spacing:0.05em; text-transform:uppercase; color:var(--sage); margin-bottom:6px;">Telefono</label>
-        <input type="tel" style="width:100%; padding:12px 14px; margin-bottom:24px; border:1px solid var(--beige); border-radius:2px; font-family:'Manrope',sans-serif; font-size:15px;">
+        <input type="tel" name="phone_number" style="width:100%; padding:12px 14px; margin-bottom:24px; border:1px solid var(--beige); border-radius:2px; font-family:'Manrope',sans-serif; font-size:15px;">
         <button type="submit" class="btn btn-primary" style="width:100%; border:none;">Mettimi in lista per l'Analisi</button>
         <p style="font-size:12px; color:var(--taupe); text-align:center; margin-top:14px;">Sarai tra le prime a poter prenotare l'Analisi Digitale della Pelle in Studio (89 €).</p>
       </form>
+      <div id="waitlist-success" style="display:none; text-align:center; margin-top:32px; background:#fff; border:1px solid var(--taupe); border-radius:3px; padding:44px 32px;">
+        <span class="eyebrow">Fatto</span>
+        <h3 style="font-size:24px; margin:14px 0 10px;">Sei in lista.</h3>
+        <p style="color:#5b5b5b; font-size:15px;">Ti scriveremo non appena lo studio apre, per essere tra le prime a prenotare l'Analisi. Nel frattempo, dai un'occhiata a <a href="metodo.html" style="color:var(--sage); text-decoration:underline;">Il Metodo</a>.</p>
+      </div>
     </div>
   </section>
 
@@ -416,6 +435,31 @@
     }, { threshold: 0.15 });
     els.forEach(el => io.observe(el));
   });
+</script>
+
+<script>
+  document.addEventListener('contextmenu', function(e){
+    if (e.target.tagName === 'IMG') e.preventDefault();
+  });
+  document.querySelectorAll('img').forEach(function(img){ img.setAttribute('draggable','false'); });
+</script>
+<script>
+  var wf = document.getElementById('waitlist-form');
+  if (wf) {
+    wf.addEventListener('submit', function(e){
+      e.preventDefault();
+      var data = new FormData(wf);
+      fetch(wf.action, { method: 'POST', body: data, mode: 'no-cors' })
+        .then(function(){
+          wf.style.display = 'none';
+          document.getElementById('waitlist-success').style.display = 'block';
+        })
+        .catch(function(){
+          wf.style.display = 'none';
+          document.getElementById('waitlist-success').style.display = 'block';
+        });
+    });
+  }
 </script>
 </body>
 </html>
